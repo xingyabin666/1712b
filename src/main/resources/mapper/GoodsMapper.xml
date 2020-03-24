@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.GoodsMapper">
+
+<select id="findAll" parameterType="map" resultType="com.bw.bean.Goods">
+SELECT g.*,k.kname,b.bname FROM goods g,goodskind k,brand b  
+WHERE  g.bid=b.bid AND g.kid=k.kid
+</select>
+<select id="findBrand" resultType="com.bw.bean.Brand">
+select * from brand;
+</select>
+<select id="findKind" resultType="com.bw.bean.Goodskind">
+select * from goodskind;
+</select>
+<insert id="addGoods" parameterType="com.bw.bean.Goods">
+insert into goods
+(cname,ename,bid,kid,size,price,num,label,priurl)
+ values
+(#{cname},#{ename},#{bid},#{kid},#{size},#{price},#{num},#{label},#{priurl})
+</insert>
+
+</mapper>
